@@ -1,232 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-
-html {
-    box-sizing: border-box;
-}
-
+/* Global Styles */
 body {
+    font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 10px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f5;
-    padding-top: env(safe-area-inset-top);
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
-/* Background */
-.background {
-    position: fixed;
+/* Set uniform section width */
+section {
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove border & background from Profile & Portfolio */
+.profile, .portfolio {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Header */
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Profile Image Stack */
+.profile {
+    position: relative;
+    text-align: center;
+}
+
+.image-stack {
+    position: relative;
+    width: 350px;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.frame {
+    position: absolute;
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
-    overflow: hidden;
+    opacity: 0.4;
+    transform: rotate(-10deg);
 }
 
-.background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(20px) brightness(0.7);
-}
-
-/* Main Container */
-.container {
-    background: linear-gradient(135deg, #2a2a2a, #333333);
-    width: 60%;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    overflow: hidden;
-    animation: subtleGreyBackground 60s infinite alternate ease-in-out;
-}
-
-@keyframes subtleGreyBackground {
-    0% {
-        background: linear-gradient(135deg, #2a2a2a, #333333);
-    }
-    25% {
-        background: linear-gradient(135deg, #2b2b2b, #343434);
-    }
-    50% {
-        background: linear-gradient(135deg, #2c2c2c, #353535);
-    }
-    75% {
-        background: linear-gradient(135deg, #2b2b2b, #343434);
-    }
-    100% {
-        background: linear-gradient(135deg, #2a2a2a, #333333);
-    }
-}
-
-
-
-
-/* Profile Section */
-.profile-img {
-    width: 150px; 
-    height: 150px;
-    border-radius: 50%;
-    margin-top: env(safe-area-inset-top); 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h2 {
-    font-size: 22px;
-    margin: 10px 0 5px;
-    color: #ffffff;
-}
-
-h3 {
-    font-size: 12px;
-    color: #ffffff;
-}
-
-/* Container for the social links */
-.social-links {
-    display: flex;
-    gap: 15px; 
-    justify-content: center;
-    margin-top: 20px;
-}
-
-/* Styling for each social media icon */
-.social-links a {
-    display: inline-block;
-    width: 40px; 
-    height: 40px;
-    background-color: #fff; 
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-/* Zoom effect on hover */
-.social-links a:hover {
-    transform: scale(1.2); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-/* Styling for the icons */
-.social-links a i {
-    font-size: 20px; 
-    color: #333; 
-    transition: color 0.3s ease; 
-}
-
-/* Change icon color on hover */
-.social-links a:hover i {
-    color: #0073e6; 
-}
-
-
-/* Link Cards */
-.link-cards {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.card {
-    background: #424242;
-    border-radius: 15px;
-    width: 250px;
-    text-align: center;
-    padding: 20px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.card img {
-    width: 50%;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-.card h4 {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 14px;
-    color: #d3d3d3;
-    margin-bottom: 15px;
-}
-
-.card-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #333;
-    color: #ffffff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.card-link:hover {
-    background: #555;
-    transform: scale(1.05);
-}
-
-/* Footer Styling */
-.footer {
-    color: #fff;
-    padding: 20px 0;
+.main-profile {
     position: relative;
-    bottom: 0;
     width: 100%;
-    text-align: center;
+    z-index: 2;
 }
 
-.footer p {
-    margin: 0;
-    font-size: 14px;
+.profile p {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .profile-photo {
-        margin-top: calc(env(safe-area-inset-top) + 20px);
-    }
+.profile a{
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
 }
 
-@media (max-width: 400px) {
-    .container {
-        width: 95%;
-        padding: 15px;
-    }
+/* YouTube Section */
+.youtube .video {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
 
-    h2 {
-        font-size: 18px;
-    }
+.youtube img {
+    width: 100%;
+    border-radius: 5px;
+}
 
-    h3 {
-        font-size: 10px;
-    }
+.youtube a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-    .link-button {
-        font-size: 14px;
-        padding: 8px;
-    }
+/* Subscription Form */
+.subscribe input {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.subscribe button {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Music Podcast */
+.music iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+/* Portfolio Section */
+.portfolio {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.portfolio-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.portfolio-container img {
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 0.3s ease; /* Adds a zoom effect on hover */
+}
+
+.portfolio-container:hover img {
+    transform: scale(1.1); /* Zoom effect when hovered */
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-container:hover .overlay {
+    opacity: 1; 
+}
+
+
+/* Footer Social Icons */
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+footer a {
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
 }
