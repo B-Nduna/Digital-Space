@@ -17,7 +17,6 @@ section {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Remove border & background from Profile & Portfolio */
 .profile, .portfolio {
     background: none;
     box-shadow: none;
@@ -69,24 +68,24 @@ header h1 {
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Adjusts spacing between icons */
+    gap: 15px;
     margin-top: 20px;
     box-shadow: none;
     background: none;
 }
 
 .social-links a {
-    font-size: 25px; /* Match the image size */
-    color: black; /* Ensure black color */
+    font-size: 25px; 
+    color: black; 
     transition: transform 0.2s ease;
-    text-decoration: none; /* Removes any default underline */
-    border: none; /* Ensures no border */
-    outline: none; /* Removes focus outline */
-    background: none; /* Removes any background effect */
+    text-decoration: none; 
+    border: none; 
+    outline: none; 
+    background: none; 
 }
 
 .social-links a:hover {
-    transform: scale(1.1); /* Slight hover effect */
+    transform: scale(1.1); 
 }
 
 
@@ -146,8 +145,8 @@ header h1 {
 
 .portfolio img {
     max-width: 100%;
-    width: 100%; /* Make it responsive */
-    max-width: 400px; /* Prevent it from getting too big */
+    width: 100%;
+    max-width: 400px; 
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -156,8 +155,8 @@ header h1 {
 .portfolio-container {
     position: relative;
     width: 100%;
-    max-width: 400px; /* Limit max width */
-    margin: auto; /* Center it */
+    max-width: 400px;
+    margin: auto;
     overflow: hidden;
 }
 
@@ -169,7 +168,7 @@ header h1 {
 }
 
 .portfolio-container:hover img {
-    transform: scale(1.05); /* Slight zoom instead of huge size */
+    transform: scale(1.05);
 }
 
 /* Footer Social Icons */
@@ -178,10 +177,4 @@ footer {
     justify-content: center;
     gap: 15px;
     padding: 10px;
-}
-
-footer a {
-    color: black;
-    font-size: 24px;
-    text-decoration: none;
 }
