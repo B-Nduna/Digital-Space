@@ -1,4 +1,3 @@
-console.log("✅ script.js is loaded!");
 
 document.getElementById("subscribe-form").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -35,11 +34,9 @@ window.addEventListener('DOMContentLoaded', () => {
         const thumbnail = video.thumbnails.maxres?.url || video.thumbnails.high.url;
         const link = `https://youtu.be/${videoId}`;
   
-        // Update image and link
         document.getElementById("yt-latest-img").src = thumbnail;
         document.getElementById("yt-latest-link").href = link;
   
-        // Update caption and button
         document.getElementById("yt-video-title").textContent = title;
         document.getElementById("yt-watch-btn").href = link;
   
