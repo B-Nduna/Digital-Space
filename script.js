@@ -1,3 +1,5 @@
+console.log("✅ script.js is loaded!");
+
 document.getElementById("subscribe-form").addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -15,3 +17,34 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
         alert("Please fill in all fields.");
     }
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    const apiKey = "AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM";
+    const uploadsPlaylistId = "UUSUDHpe2oXAPZ308ednBykg";
+  
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${uploadsPlaylistId}&part=snippet&maxResults=1&key=${apiKey}`;
+  
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.items || data.items.length === 0) throw new Error("No videos found");
+  
+        const video = data.items[0].snippet;
+        const videoId = video.resourceId.videoId;
+        const title = video.title;
+        const thumbnail = video.thumbnails.maxres?.url || video.thumbnails.high.url;
+        const link = `https://youtu.be/${videoId}`;
+  
+        // Update image and link
+        document.getElementById("yt-latest-img").src = thumbnail;
+        document.getElementById("yt-latest-link").href = link;
+  
+        // Update caption and button
+        document.getElementById("yt-video-title").textContent = title;
+        document.getElementById("yt-watch-btn").href = link;
+  
+        console.log("✅ Thumbnail, caption, and CTA updated:", { title, thumbnail, link });
+      })
+      .catch(err => console.error("❌ YouTube API error:", err));
+  });
+  
