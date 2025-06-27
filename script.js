@@ -8,7 +8,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
     // Check if both fields are filled
     if (name && email) {
         let message = `Hello, my name is ${name} and my email address is ${email}. I'd like to stay updated on your projects!`;
-        let whatsappUrl = `https://wa.me/27814588898?text=${encodeURIComponent(message)}`;
+        let whatsappUrl = `https://wa.me/27603168301?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
 
         document.getElementById("subscribe-form").reset();
