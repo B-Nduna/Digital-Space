@@ -70,7 +70,7 @@ header h1 {
 
 
 /* Social Media Icons - Black & White */
-.social-links {
+.Social {
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -79,17 +79,24 @@ header h1 {
     background: none;
 }
 
-.social-links a {
-    font-size: 25px; 
-    color: black; 
+.Social a {
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
     transition: transform 0.2s ease;
-    
 }
 
-.social-links a:hover {
-    transform: scale(1.1); 
+.Social a:hover {
+    transform: scale(1.1);
+    background-color: #ddd;
 }
-
 
 /* YouTube Section */
 .youtube .video {
