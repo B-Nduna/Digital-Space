@@ -17,20 +17,42 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 });
 
 // YouTube API Configuration
-const API_KEY = process.env.YOUTUBE_API_KEY;
-const CHANNEL_ID = '@TorqueNest'; 
+const CHANNEL_ID = 'UCZpOLsRApE8GKK1yzC79kEw'; // TorqueNest channel ID
+const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
 
 // Fetch Latest YouTube Video
 async function fetchLatestVideo() {
     try {
         const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=1&order=date&key=${API_KEY}`
         );
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         if (data.items && data.items.length > 0) {
             const video = data.items[0];
-            updateVideoUI(video);
+            const videoId = video.id.videoId;
+            const title = video.snippet.title;
+            const publishedAt = new Date(video.snippet.publishedAt);
+            const thumbnail = video.snippet.thumbnails.high.url;
+            
+            // Update DOM elements
+            document.getElementById('yt-video-title').textContent = title;
+            document.getElementById('yt-latest-img').src = thumbnail;
+            document.getElementById('upload-date').textContent = formatDate(publishedAt);
+            
+            const videoUrl = `https://youtube.com/watch?v=${videoId}`;
+            const ytLink = document.getElementById('yt-latest-link');
+            const watchBtn = document.getElementById('yt-watch-btn');
+            
+            if (ytLink) ytLink.href = videoUrl;
+            if (watchBtn) watchBtn.href = videoUrl;
+        } else {
+            handleYouTubeError();
         }
     } catch (error) {
         console.error('Error fetching YouTube data:', error);
@@ -38,28 +60,18 @@ async function fetchLatestVideo() {
     }
 }
 
-// Update UI with video data
-function updateVideoUI(video) {
-    const videoId = video.id.videoId;
-    const title = video.snippet.title;
-    const publishedAt = new Date(video.snippet.publishedAt);
-    const thumbnail = video.snippet.thumbnails.high.url;
-    
-    document.getElementById('yt-video-title').textContent = title;
-    document.getElementById('yt-latest-img').src = thumbnail;
-    document.getElementById('upload-date').textContent = formatDate(publishedAt);
-    
-    const videoUrl = `https://youtube.com/watch?v=${videoId}`;
-    document.getElementById('yt-latest-link').href = videoUrl;
-    document.getElementById('yt-watch-btn').href = videoUrl;
-}
-
 // Handle YouTube API errors
 function handleYouTubeError() {
     const fallbackThumbnail = 'images/youtube-placeholder.jpg';
-    document.getElementById('yt-video-title').textContent = 'Latest Video';
-    document.getElementById('yt-latest-img').src = fallbackThumbnail;
-    document.getElementById('upload-date').textContent = 'Recently';
+    const elements = {
+        title: document.getElementById('yt-video-title'),
+        img: document.getElementById('yt-latest-img'),
+        date: document.getElementById('upload-date')
+    };
+
+    if (elements.title) elements.title.textContent = 'Check out my latest videos';
+    if (elements.img) elements.img.src = fallbackThumbnail;
+    if (elements.date) elements.date.textContent = 'Recently';
 }
 
 // Format date for display
@@ -120,6 +132,4 @@ document.getElementById("subscribe-form")?.addEventListener("submit", function(e
 });
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    fetchLatestVideo();
-});
+document.addEventListener('DOMContentLoaded', fetchLatestVideo);
