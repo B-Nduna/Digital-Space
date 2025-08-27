@@ -18,7 +18,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 
 // YouTube API Configuration
 const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
-const CHANNEL_ID = '@TorqueNest'; // Changed to channel username
+const CHANNEL_ID = 'UCSUDHpe2oXAPZ308ednBykg';
 
 async function fetchLatestYouTubeVideo() {
     try {
