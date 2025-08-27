@@ -1,4 +1,3 @@
-
 document.getElementById("subscribe-form").addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -44,4 +43,51 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => console.error("❌ YouTube API error:", err));
   });
-  
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Intersection Observer for fade-in animations
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    section.classList.add('fade-out');
+    observer.observe(section);
+});
+
+// Form submission with animation
+const form = document.getElementById('subscribe-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const button = form.querySelector('button');
+    button.innerHTML = '<span class="spinner"></span>';
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    button.innerHTML = 'Thanks for subscribing!';
+    form.reset();
+    
+    setTimeout(() => {
+        button.innerHTML = 'Submit';
+    }, 3000);
+});
