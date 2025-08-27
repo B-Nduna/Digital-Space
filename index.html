@@ -8,8 +8,6 @@
     <link rel="icon" href="images/B_Nduna_Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
 </head>
 
 <body>
@@ -24,12 +22,9 @@
             <img src="images/Profile.webp" class="main-profile" alt="Profile Image">
         </div>
     
-        <p>
-            <a class="nav-link scroll-link" href="#portfolio">Tech</a>
-            <span>|</span>
-            <a class="nav-link scroll-link" href="#youtube">Sim Racing</a>
-            <span>|</span>
-            <a class="nav-link scroll-link" href="#music">Music</a>
+        <p><a class="nav-link scroll-link" href="#portfolio">Software Developer</a> | 
+           <a class="nav-link scroll-link" href="#youtube">Sim Racer</a> | 
+           <a class="nav-link scroll-link" href="#music">Music Enthusiast</a>
         </p>  
     
         <div class="Social">
@@ -51,27 +46,15 @@
 
     
     <!-- YouTube Videos -->
-    <section class="youtube" id="youtube">
+    <section class="youtube">
         <h2>TorqueNest</h2>
-        <div class="youtube-grid">
-            <div class="youtube-card">
-                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="thumbnail-link">
-                    <img src="images/latest-video-thumbnail.jpg" alt="Latest Video">
-                    <div class="play-overlay">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </a>
-                <div class="youtube-info">
-                    <h3>Latest Race Highlights</h3>
-                    <div class="youtube-meta">
-                        <span class="channel">@TorqueNest</span>
-                        <a href="https://www.youtube.com/@TorqueNest" class="subscribe-btn" target="_blank">
-                            Subscribe <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="video">
+            <a id="yt-latest-link" href="#" target="_blank">
+              <img id="yt-latest-img" src="images/placeholder.jpg" alt="Latest Video">
+            </a>
+            <p id="yt-video-title">Latest upload loading...</p>
+            <a id="yt-watch-btn" href="#" target="_blank">Watch Latest Content ▶</a>
+          </div>
     </section>
       
 
@@ -96,6 +79,8 @@
     </section>
     
 
+
+    <script src="script.js"></script>
 
 </body>
 </html>
