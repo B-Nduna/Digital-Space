@@ -4,12 +4,10 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
 
-    // Check if both fields are filled
     if (name && email) {
         let message = `Hello, my name is ${name} and my email address is ${email}. I'd like to stay updated on your projects!`;
         let whatsappUrl = `https://wa.me/27603168301?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
-
         document.getElementById("subscribe-form").reset();
     } else {
         alert("Please fill in all fields.");
@@ -17,23 +15,22 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 });
 
 // YouTube API Configuration
-const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
-const CHANNEL_ID = 'UCSUDHpe2oXAPZ308ednBykg';
+const API_KEY = 'AIzaSyCb6ymQvkuWBPEHM12gyI6jqK4A3n09ay0'; 
+const CHANNEL_ID = 'UCSUDHpe2oXAPZ308ednBykg'; // TorqueNest channel ID
 
 async function fetchLatestYouTubeVideo() {
     try {
-        // Updated API endpoint to use channel username
         const response = await fetch(
-            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${CHANNEL_ID}&maxResults=1&order=date&type=video&key=${API_KEY}`
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=1&order=date&type=video&key=${API_KEY}`
         );
         const data = await response.json();
+        console.log("YouTube API Response:", data); // Debug log
 
         if (data.items && data.items.length > 0) {
             const video = data.items[0];
             const videoId = video.id.videoId;
             const snippet = video.snippet;
 
-            // Update YouTube card content
             document.querySelector('.youtube-grid').innerHTML = `
                 <div class="youtube-card">
                     <a href="https://youtube.com/watch?v=${videoId}" class="thumbnail-link" target="_blank">
@@ -53,6 +50,9 @@ async function fetchLatestYouTubeVideo() {
                     </div>
                 </div>
             `;
+        } else {
+            console.warn("No videos found for this channel.");
+            handleError();
         }
     } catch (error) {
         console.error('Error fetching YouTube data:', error);
