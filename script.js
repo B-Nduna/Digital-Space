@@ -16,7 +16,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 
 // YouTube API Configuration
 const API_KEY = 'AIzaSyCb6ymQvkuWBPEHM12gyI6jqK4A3n09ay0'; 
-const CHANNEL_ID = 'UCSUDHpe2oXAPZ308ednBykg'; // TorqueNest channel ID
+const CHANNEL_ID = 'UCSUDHpe2oXAPZ308ednBykg';
 
 async function fetchLatestYouTubeVideo() {
     try {
@@ -24,7 +24,7 @@ async function fetchLatestYouTubeVideo() {
             `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=1&order=date&type=video&key=${API_KEY}`
         );
         const data = await response.json();
-        console.log("YouTube API Response:", data); // Debug log
+        console.log("YouTube API Response:", data);
 
         if (data.items && data.items.length > 0) {
             const video = data.items[0];
