@@ -1,4 +1,3 @@
-
 document.getElementById("subscribe-form").addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -17,31 +16,31 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
     }
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-    const apiKey = "AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM";
-    const uploadsPlaylistId = "UUSUDHpe2oXAPZ308ednBykg";
-  
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${uploadsPlaylistId}&part=snippet&maxResults=1&key=${apiKey}`;
-  
+// YouTube API Configuration
+const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
+const CHANNEL_ID = 'UCZpOLsRApE8GKK1yzC79kEw';
+
+// Fetch YouTube Data
+function fetchYouTubeData() {
+    const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=1&type=video`;
+    
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        if (!data.items || data.items.length === 0) throw new Error("No videos found");
-  
-        const video = data.items[0].snippet;
-        const videoId = video.resourceId.videoId;
-        const title = video.title;
-        const thumbnail = video.thumbnails.maxres?.url || video.thumbnails.high.url;
-        const link = `https://youtu.be/${videoId}`;
-  
-        document.getElementById("yt-latest-img").src = thumbnail;
-        document.getElementById("yt-latest-link").href = link;
-  
-        document.getElementById("yt-video-title").textContent = title;
-        document.getElementById("yt-watch-btn").href = link;
-  
-        console.log("✅ Thumbnail, caption, and CTA updated:", { title, thumbnail, link });
-      })
-      .catch(err => console.error("❌ YouTube API error:", err));
-  });
-  
+        .then(response => response.json())
+        .then(data => {
+            if (data.items && data.items.length > 0) {
+                const video = data.items[0];
+                const snippet = video.snippet;
+                const videoId = video.id.videoId;
+                
+                // Update DOM elements
+                document.querySelector('#yt-latest-img').src = snippet.thumbnails.high.url;
+                document.querySelector('#yt-video-title').textContent = snippet.title;
+                document.querySelector('#yt-latest-link').href = `https://youtube.com/watch?v=${videoId}`;
+                document.querySelector('#yt-watch-btn').href = `https://youtube.com/watch?v=${videoId}`;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Call function when page loads
+document.addEventListener('DOMContentLoaded', fetchYouTubeData);
