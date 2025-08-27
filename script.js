@@ -17,7 +17,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 });
 
 // YouTube API Configuration
-const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
+const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = '@TorqueNest'; 
 
 // Fetch Latest YouTube Video
