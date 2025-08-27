@@ -18,12 +18,13 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 
 // YouTube API Configuration
 const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
-const CHANNEL_ID = 'UCZpOLsRApE8GKK1yzC79kEw';
+const CHANNEL_ID = '@TorqueNest'; // Changed to channel username
 
 async function fetchLatestYouTubeVideo() {
     try {
+        // Updated API endpoint to use channel username
         const response = await fetch(
-            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=1&order=date&type=video&key=${API_KEY}`
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${CHANNEL_ID}&maxResults=1&order=date&type=video&key=${API_KEY}`
         );
         const data = await response.json();
 
