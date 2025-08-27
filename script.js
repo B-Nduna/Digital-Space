@@ -77,3 +77,13 @@ function handleError() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', fetchLatestYouTubeVideo);
+
+document.querySelector('.youtube-grid').innerHTML = `
+    <div class="youtube-card">
+        <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" class="thumbnail-link" target="_blank">
+            <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Test Video">
+            <div class="play-overlay"><i class="fas fa-play"></i></div>
+        </a>
+    </div>
+`;
+
