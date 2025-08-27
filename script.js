@@ -17,47 +17,41 @@ document.getElementById("subscribe-form").addEventListener("submit", function(ev
 });
 
 // YouTube API Configuration
-const CHANNEL_ID = 'UCZpOLsRApE8GKK1yzC79kEw'; // TorqueNest channel ID
 const API_KEY = 'AIzaSyDKda18Lbc6bsBKmmLz6ckmo2Jfgy5jZYM';
+const CHANNEL_ID = 'UCZpOLsRApE8GKK1yzC79kEw'; // TorqueNest channel ID
 
 // Fetch Latest YouTube Video
 async function fetchLatestVideo() {
     try {
         const response = await fetch(
-            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=1&order=date&key=${API_KEY}`
+            `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=1&type=video`
         );
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
         
         const data = await response.json();
         
         if (data.items && data.items.length > 0) {
             const video = data.items[0];
-            const videoId = video.id.videoId;
-            const title = video.snippet.title;
-            const publishedAt = new Date(video.snippet.publishedAt);
-            const thumbnail = video.snippet.thumbnails.high.url;
-            
-            // Update DOM elements
-            document.getElementById('yt-video-title').textContent = title;
-            document.getElementById('yt-latest-img').src = thumbnail;
-            document.getElementById('upload-date').textContent = formatDate(publishedAt);
-            
-            const videoUrl = `https://youtube.com/watch?v=${videoId}`;
-            const ytLink = document.getElementById('yt-latest-link');
-            const watchBtn = document.getElementById('yt-watch-btn');
-            
-            if (ytLink) ytLink.href = videoUrl;
-            if (watchBtn) watchBtn.href = videoUrl;
-        } else {
-            handleYouTubeError();
+            updateVideoUI(video);
         }
     } catch (error) {
-        console.error('Error fetching YouTube data:', error);
+        console.error('Error:', error);
         handleYouTubeError();
     }
+}
+
+function updateVideoUI(video) {
+    const videoId = video.id.videoId;
+    const title = video.snippet.title;
+    const publishedAt = new Date(video.snippet.publishedAt);
+    const thumbnail = video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high.url;
+    const videoUrl = `https://youtube.com/watch?v=${videoId}`;
+
+    // Update DOM elements
+    document.getElementById('yt-video-title').textContent = title;
+    document.getElementById('yt-latest-img').src = thumbnail;
+    document.getElementById('upload-date').textContent = formatDate(publishedAt);
+    document.getElementById('yt-latest-link').href = videoUrl;
+    document.getElementById('yt-watch-btn').href = videoUrl;
 }
 
 // Handle YouTube API errors
@@ -140,36 +134,22 @@ form.addEventListener('submit', async (e) => {
     button.innerHTML = '<span class="spinner"></span>';
     button.disabled = true;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});    }        button.disabled = false;        button.innerHTML = 'Subscribe';    } finally {        alert('There was an error. Please try again later.');        console.error('Error:', error);    } catch (error) {        alert(result.message || 'Subscription successful!');        const result = await response.json();        }            throw new Error('Network response was not ok');        if (!response.ok) {        });            body: formData            method: 'POST',        const response = await fetch('https://example.com/subscribe', {    try {    const formData = new FormData(form);    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    button.innerHTML = 'Thanks for subscribing!';
-    form.reset();
-    
-    setTimeout(() => {
-        button.innerHTML = 'Submit';
-    }, 3000);
+    try {
+        const formData = new FormData(form);
+        // Simulate form submission
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        button.innerHTML = 'Thanks for subscribing!';
+        form.reset();
+        
+        setTimeout(() => {
+            button.innerHTML = 'Submit';
+        }, 3000);
+    } catch (error) {
+        alert('There was an error. Please try again later.');
+        console.error('Error:', error);
+    } finally {
+        button.disabled = false;
+        button.innerHTML = 'Subscribe';
+    }
 });

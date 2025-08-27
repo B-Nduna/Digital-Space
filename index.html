@@ -52,16 +52,24 @@
     
     <!-- YouTube Videos -->
     <section class="youtube">
-        <h2>Latest Video</h2>
         <div class="video-card">
-            <a id="yt-latest-link" href="#" target="_blank">
-                <img id="yt-latest-img" src="" alt="Latest Video">
-            </a>
-            <h3 id="yt-video-title">Loading...</h3>
-            <p id="upload-date">Loading...</p>
-            <a id="yt-watch-btn" href="#" target="_blank" class="watch-button">
-                Watch Video <i class="fas fa-arrow-right"></i>
-            </a>
+            <div class="thumbnail-container">
+                <a id="yt-latest-link" href="#" target="_blank">
+                    <img id="yt-latest-img" src="images/youtube-placeholder.jpg" alt="Latest Video">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="video-info">
+                <h3 id="yt-video-title">Loading...</h3>
+                <div class="video-stats">
+                    <span class="upload-date" id="upload-date">Loading...</span>
+                </div>
+                <a id="yt-watch-btn" href="#" target="_blank" class="watch-button">
+                    Watch Latest <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </section>
       
