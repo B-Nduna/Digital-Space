@@ -1,5 +1,5 @@
 {
-  "name": "digital-space",
+  "name": "Digital-Space",
   "homepage": "https://b-nduna.github.io/Digital-Space/",
   "private": true,
   "version": "0.0.0",
@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
@@ -16,6 +17,8 @@
     "vite": "^7.1.2"
   },
   "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-icons": "^5.5.0"
   }
 }
